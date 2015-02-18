@@ -14,6 +14,7 @@ dir="$(dirname "$0")"
 . $dir/functions/upgrade
 . $dir/functions/essentials
 . $dir/functions/development
+. $dir/functions/vm
 
 #----- MESSAGE FUNCTIONS -----#
 
@@ -37,6 +38,7 @@ function main {
 	echo '1. Perform system update & upgrade?'
 	echo '2. Install essentials?'
 	echo '3. Install development?'
+	echo '4. Install VMPlayer?'
 	echo 'q. Quit?'
 	echo ''
 	show_info 'Enter your choice :' && read REPLY
@@ -44,6 +46,7 @@ function main {
 		1) upgrade;; 
 		2) clear && essentials;; 
 		3) clear && development;; 
+		4) clear && vm;;
 		[Qq]* ) echo '' && quit;; # Quit
 		* ) clear && show_error '\aNot an option, try again.' && main;;
 	esac

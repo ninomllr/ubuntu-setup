@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+# INSTALL VM
+function vm {
+# Install Favourite Applications
+echo ''
+echo 'Installing VMPlayer...'
+echo ''
+show_info 'Proceed? (Y)es, (N)o : ' && read REPLY
+echo ''
+case $REPLY in
+# Positive action
+[Yy]* ) 
+    show_info 'Requires root privileges:'
+    echo 'Installing Linux headers'
+    sudo apt-get install linux-headers-$(uname -r)
+
+    echo 'You have to install VMPlayer manually, sorry!'
+    URL="https://my.vmware.com/web/vmware/free#desktop_end_user_computing/vmware_player/7_0"
+    [[ -x $BROWSER ]] && exec "$BROWSER" "$URL"
+    path=$(which xdg-open || which gnome-open) && exec "$path" "$URL"
+    echo "Can't find browser"
+    show_success 'Done.'
+    main
+    ;;
+# Negative action
+[Nn]* )
+    clear && main
+    ;;
+# Error
+* )
+    clear && show_error '\aSorry, try again.'
+    favourites
+    ;;
+esac
+}

@@ -1,5 +1,6 @@
-LARATIONS -----#
+#!/bin/bash
 
+#----- DECLARATIONS -----#
 dir="$(dirname "$0")"
 
 FAVS="$dir/data/essentials.list"
